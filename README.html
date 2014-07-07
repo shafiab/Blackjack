@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=9" >
+
+<title>Blackjack</title>
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 12px;
+   margin: 8px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 { 
+   font-size:2.2em; 
+}
+
+h2 { 
+   font-size:1.8em; 
+}
+
+h3 { 
+   font-size:1.4em; 
+}
+
+h4 { 
+   font-size:1.0em; 
+}
+
+h5 { 
+   font-size:0.9em; 
+}
+
+h6 { 
+   font-size:0.8em; 
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre {	
+   margin-top: 0;
+   max-width: 95%;
+   border: 1px solid #ccc;
+   white-space: pre-wrap;
+}
+
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code.r, code.cpp {
+   background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * { 
+      background: transparent !important; 
+      color: black !important; 
+      filter:none !important; 
+      -ms-filter: none !important; 
+   }
+
+   body { 
+      font-size:12pt; 
+      max-width:100%; 
+   }
+       
+   a, a:visited { 
+      text-decoration: underline; 
+   }
+
+   hr { 
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote { 
+      padding-right: 1em; 
+      page-break-inside: avoid; 
+   }
+
+   tr, img { 
+      page-break-inside: avoid; 
+   }
+
+   img { 
+      max-width: 100% !important; 
+   }
+
+   @page :left { 
+      margin: 15mm 20mm 15mm 10mm; 
+   }
+     
+   @page :right { 
+      margin: 15mm 10mm 15mm 20mm; 
+   }
+
+   p, h2, h3 { 
+      orphans: 3; widows: 3; 
+   }
+
+   h2, h3 { 
+      page-break-after: avoid; 
+   }
+}
+
+</style>
+
+
+
+
+
+</head>
+
+<body>
+<h1>Blackjack</h1>
+
+<h2>A text based blackjack game written in C++ </h2>
+
+<h2>How to play</h2>
+
+<p>Initial screen will ask for user input to continue play (1), or exit the program (2).
+If the players decide to play, then next prompt will ask for bet from each player sequentially.
+Once bets are done, the dealer deals the card and the next prompt shows board condition (delars and players card).
+The dealer will go sequentially to each player asking for action. Each player can either hit(H), stand(S), double down(D) or split to two bets(S). The option for double down and split will only be available if the situation permits. Once all player plays the game, the game will show the final standing in terms of chips available to each player and ask whether to play or exit.</p>
+
+<h2>Game Rules</h2>
+
+<ol>
+<li><strong>Splitting :</strong> Unlimited number of splitting is permitted as long as the player has money and the two cards have the same blackjack value.</li>
+<li><strong>Payout :</strong> The pay out is 1:1 except for blackjack in which case the payout is 3:2.</li>
+<li><strong>Soft 17 Rule:</strong> The dealer will stand on soft 17.</li>
+<li><strong>Number of Players:</strong> Any number of player can play the game. The default is one player. The number of player is defined before the game starts (See Setup Options below).</li>
+</ol>
+
+<h2>Setup Options</h2>
+
+<p>A few setup variables are defined at the beginning of &#39;main.cpp&#39; files. </p>
+
+<ul>
+<li><strong>NumPlayer</strong> : Sets the number of players playing the game. Default is 1.</li>
+<li><strong>NumDeck</strong> : Sets the number of deck of cards in the shoe. Default is 4.</li>
+<li><strong>isRandomSeed</strong> : Sets the seed for random number generator to random, when &#39;true&#39;. When &#39;false&#39;, the random number generator use the variable &#39;Seed&#39; to determine the seed. Default is true.</li>
+<li><strong>Seed</strong> : When random number generator use fixed seed, it use this variable to get the initial seed value. Default is 100.</li>
+<li><strong>initialAccountValue</strong> : Initial number of chips available to each player. Default is 100.</li>
+<li><strong>useTextSymbol</strong> : When false, use unicode symbol (e.g. &#9829;,&#9824;,&#9827;,&#9830;) to output the suits of a card. When true, use text (e.g. Hearts, Spades, Clubs, Diamonds) to output the suits of a card.</li>
+</ul>
+
+<h2>Supported Environment</h2>
+
+<p>The program is written, compiled and tested using Xcode environment version 5.1.1. The &#39;Executable/OSX&#39; folder contains the executable file created using Xcode.</p>
+
+<p>The program is also compiled and tested using g++ in Windows 8 environment using Netbeans IDE with cygwin 1.7.30. The &#39;Executable/Windows&#39; folder contains the executable file created using cygwin.</p>
+
+<p>The program is also compiled and tested using g++ in Windows 8 using Codelite IDE with MinGW version 4.8.1. </p>
+
+<h2>Known Issue</h2>
+
+<ul>
+<li>An issue is found with the card suit symbol (e.g. hearts, spades etc.) output when the program is compiled using MinGW 4.8.1 using Codelite IDE. It is advised to set the &#39;useTextSymbol&#39; variable to true when using this environment.</li>
+<li>The program require c++11 options. Therefore, when compiling with Codelite or Netbeans in Windows environment the compiler option &#39;-std=c++11&#39; should be added.</li>
+</ul>
+
+</body>
+
+</html>
+
